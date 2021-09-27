@@ -9,10 +9,10 @@ blogRouter.route('/')
     .get(blogController.getAllBlogs)
     .post(blogController.createBlog);
 
-// blogRouter.route('/:id')
-//     .get(blogController.getBlog)
-//     .post(blogController.deleteBlog)
-//     .patch(blogController.editBlog);
+blogRouter.route('/:id')
+    .get(blogController.getBlog)
+    .patch(blogController.editBlog)
+    .delete(blogController.deleteBlog);
 
 // export
 exports.blogRouter = blogRouter;

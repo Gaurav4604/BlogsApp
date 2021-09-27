@@ -23,3 +23,36 @@ exports.createBlog = catchAsync(async (req, res, next) => {
         }
     });
 });
+
+exports.getBlog = catchAsync(async (req, res, next) => {
+    const blog = await Blog.findById(req.params.id);
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            blog
+        }
+    });
+});
+
+exports.deleteBlog = catchAsync(async (req, res, next) => {
+    await Blog.findByIdAndDelete(req.params.id, req.body);
+
+    res.status(204).json({
+        status: 'success'
+    });
+});
+
+exports.editBlog = catchAsync(async (req, res, next) => {
+    const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            blog
+        }
+    });
+})

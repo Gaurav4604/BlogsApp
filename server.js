@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const {blogRouter} = require('./routes/blogRoutes');
+const { userRouter } = require('./routes/userRoutes');
 
 dotenv.config({path: `${__dirname}/config.env`});
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/api/v1/blogs', blogRouter);
+app.use('/api/v1/users', userRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`listening at port ${process.env.PORT}`)
